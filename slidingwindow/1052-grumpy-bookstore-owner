@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int maxSatisfied(vector<int>& customers,vector<int>& grumpy,int minutes) {
+        int unsatisfiedCustomers=0;
+
+        for(int i=0;i<minutes;i++){
+            unsatisfiedCustomers+=grumpy[i]*customers[i];
+        }
+
+        int maxunsatisfiedCustomers=unsatisfiedCustomers;
+
+        for(int i=minutes;i<customers.size();i++){
+            unsatisfiedCustomers+=grumpy[i]*customers[i];
+            unsatisfiedCustomers-=grumpy[i-minutes]*customers[i-minutes];
+            maxunsatisfiedCustomers=max(maxunsatisfiedCustomers,unsatisfiedCustomers);
+        }
+
+        int maxsatisfiedCustomers=maxunsatisfiedCustomers;
+
+        for(int i=0;i<customers.size();i++){
+            maxsatisfiedCustomers+=(1-grumpy[i])*customers[i];
+        }
+        return maxsatisfiedCustomers;
+
+        }
+};
