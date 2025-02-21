@@ -1,0 +1,27 @@
+class Solution {
+public:
+    string largestNumber(vector<int>& nums){
+      vector<string> numstr;
+
+            auto mycomparator=[](int&a,int&b){
+               string s1=to_string(a);
+               string s2=to_string(b);
+
+               return s1+s2>s2+s1;
+            };
+
+            sort(begin(nums),end(nums),mycomparator);
+
+            string result;
+            for (int &num:nums){
+                result += to_string(num);
+            }
+
+            // Handle the case where all numbers are zero
+            if (result[0] == '0'){
+                return "0";
+            }
+
+            return result;  
+    }        
+};
