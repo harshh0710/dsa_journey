@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int minStartValue(vector<int>& nums) {
+        int minSum=0,currSum=0;
+        for(int x:nums){
+            currSum+=x;
+            if(currSum<minSum){
+                minSum=currSum;
+            }
+        }
+        return -minSum+1;
+    }
+};
