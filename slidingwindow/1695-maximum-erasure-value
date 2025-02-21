@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int maximumUniqueSubarray(vector<int>& nums) {
+        unordered_map<int,int> freq;
+        int left=0;
+        int currSum=0;
+        int maxSum=0;
+
+        for(int right=0;right<nums.size();right++){
+            freq[nums[right]]++;  
+            currSum+=nums[right];
+            while(freq[nums[right]]>1){
+                freq[nums[left]]--; 
+                currSum-=nums[left];
+                left++; 
+            }
+            maxSum=max(maxSum,currSum);  
+        }
+        return maxSum;
+    }
+};
