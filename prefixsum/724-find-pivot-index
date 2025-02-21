@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int pivotIndex(vector<int>& nums) {
+        int n=nums.size();
+        int sum=0;
+        for(int &x:nums){
+            sum+=x;
+        }
+        int cumSum=0;
+
+        for(int i=0;i<n;i++){
+            int leftSum=cumSum;
+            int rightSum=sum-cumSum-nums[i];
+
+            if(leftSum==rightSum) return i;
+
+            cumSum+=nums[i];
+        }
+        return -1;
+    }
+};
