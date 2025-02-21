@@ -1,0 +1,22 @@
+class Solution {
+public:
+    int compress(vector<char>& chars) {
+        int idx=0,i=0;   
+        while(i<chars.size()){
+            char currChar=chars[i];
+            int cnt=0;
+            while(i<chars.size()&&chars[i]==currChar){
+                i++;
+                cnt++;
+            }
+            chars[idx++]=currChar;
+                if(cnt>1){
+                string cntStr=to_string(cnt);
+                for(int j=0;j<cntStr.length();j++){
+                    chars[idx++]=cntStr[j];  
+                }
+            }
+        }
+        return idx; 
+    }
+};
