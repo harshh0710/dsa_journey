@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int maxOperations(vector<int>& nums,int k){
+        unordered_map<int,int> freq;
+        int result=0;
+        for(int i=0;i<nums.size();i++){
+            int comp=k-nums[i];
+            if(freq[comp]>0) {
+                result++;
+                freq[comp]--;  
+            } else{
+                freq[nums[i]]++;  
+            }
+        }
+        return result;
+    }
+};
