@@ -1,0 +1,16 @@
+class Solution {
+public:
+    int maxWidthOfVerticalArea(vector<vector<int>>& points) {
+        vector<int> xcords;
+        for(auto& point:points) {
+            xcords.push_back(point[0]);
+        }
+        sort(xcords.begin(),xcords.end());
+        int n=xcords.size();
+        int maxWidth=0;
+        for(int i=1;i<n;i++) {
+            maxWidth=max(maxWidth,xcords[i]-xcords[i-1]);
+        }
+        return maxWidth;
+    }
+};
