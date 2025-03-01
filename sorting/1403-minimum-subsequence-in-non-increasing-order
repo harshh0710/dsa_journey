@@ -1,0 +1,17 @@
+class Solution {
+public:
+    vector<int> minSubsequence(vector<int>& nums) {
+        sort(nums.begin(),nums.end()); 
+        reverse(nums.begin(),nums.end());
+        vector<int> subseq;
+        int subseqSum=0, totalSum=accumulate(nums.begin(),nums.end(),0);
+        for(int num:nums){
+            subseqSum+=num;
+            subseq.push_back(num);
+            if(subseqSum>totalSum-subseqSum){
+                break;
+            }
+        }
+        return subseq;
+    }
+};
