@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int countSubarrays(vector<int>& nums, int bound) {
+        int cnt=0;
+        int prevCnt=0;
+        for(int i=0;i<nums.size();i++){
+            if(nums[i]<=bound){
+                prevCnt++;
+                cnt+=prevCnt;
+            } 
+            else{
+                prevCnt=0;
+            }
+        }
+        return cnt;
+    }
+    int numSubarrayBoundedMax(vector<int>& nums,int left,int right){
+        return countSubarrays(nums,right)-countSubarrays(nums,left-1);
+    }
+};
